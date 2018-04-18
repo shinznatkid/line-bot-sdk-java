@@ -48,7 +48,7 @@ public class EchoApplication {
             responseText = "น้ำฟ้า";
         }
         else {
-            responseText = requestText;
+            responseText = requestText + " (~_~)";
         }
 
         return new TextMessage(requestText);
