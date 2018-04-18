@@ -44,7 +44,7 @@ public class EchoApplication {
 
         Pattern samplePattern = Pattern.compile("ใคร.*สุด");
         Matcher sampleMatcher = samplePattern.matcher(requestText);
-        if(sampleMatcher.find()) {
+        if(sampleMatcher.matches()) {
             responseText = "น้ำฟ้า";
         }
         else {
