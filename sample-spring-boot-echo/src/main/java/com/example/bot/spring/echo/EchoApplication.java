@@ -26,6 +26,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @SpringBootApplication
 @LineMessageHandler
 public class EchoApplication {
@@ -36,7 +39,19 @@ public class EchoApplication {
     @EventMapping
     public TextMessage handleTextMessageEvent(MessageEvent<TextMessageContent> event) {
         System.out.println("event: " + event);
-        return new TextMessage(event.getMessage().getText());
+        String requestText = event.getMessage().getText();
+        String responseText = "";
+
+        Pattern samplePattern = Pattern.compile("ใคร.*สุด");
+        Matcher sampleMatcher = samplePattern.matcher(requestText);
+        if(sampleMatcher.find()) {
+            responseText = "น้ำฟ้า";
+        }
+        else {
+            responseText = requestText;
+        }
+
+        return new TextMessage(requestText);
     }
 
     @EventMapping
